@@ -19,7 +19,7 @@ const DataTable: React.FC = () => {
   } = useData(API_URL);
 
   return (
-    <div>
+    <div className="container">
       <div className="space-around">
         <label>
           <span>Filter: </span>

@@ -18,7 +18,7 @@ const List: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>Custom Fetch Hook Example</h1>
       <button onClick={request}>refetch</button>
       {isLoading && <p>Loading...</p>}
