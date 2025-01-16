@@ -1,50 +1,35 @@
-# React + TypeScript + Vite
+This repository demonstrates a flexible and reusable approach to data fetching in React using two custom hooks: `useAxios` and `useData`. It includes a fully functional data table component with built-in support for pagination, filtering, and sorting.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
 
-Currently, two official plugins are available:
+### `useAxios`
+A universal React hook for handling HTTP requests:
+- **Supports all HTTP methods**: GET, POST, PUT, DELETE, etc.
+- **State management**:
+  - `data`: Stores response data.
+  - `isLoading`: Indicates loading state.
+  - `error`: Captures error messages.
+- **Configurable**: Accepts a standard Axios configuration object to set headers, query parameters, and more.
+- **Reusable**: Suitable for any component that needs API interaction.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### `useData`
+A specialized hook for paginated data fetching:
+- **Data fetching**: Retrieves and manages data from a specified API endpoint.
+- **Pagination**: Handles navigation through pages with `next` and `previous` controls.
+- **Filtering and sorting**:
+  - Filter data dynamically using a search string.
+  - Sort data by a specified field.
+- **State management**: Manages `data`, `total` count, `page`, `limit`, `filter`, `sort`, and loading states.
+- **Encapsulated Handlers**:
+  - `handleNext`, `handlePrev`: Control pagination.
+  - `handleFilterChange`, `handleSortChange`: Manage filter and sort changes.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Clone the repository, install dependencies, and start dev server:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+```bash
+git clone https://github.com/hgromov/custom-hooks.git
+cd custom-hooks
+npm install
+npm run dev
