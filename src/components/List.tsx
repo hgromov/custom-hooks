@@ -5,25 +5,22 @@ interface PostData {
   body: string;
   id: number;
   title: string;
-  userId: number
+  userId: number;
 }
 
-
-const ListComponent: React.FC = () => {
+const List: React.FC = () => {
   const { data, isLoading, error, request } = useAxios<PostData[]>({
-    url: "https://jsonplaceholder.typicode.com/posts"
+    url: "https://jsonplaceholder.typicode.com/posts",
   });
 
   useEffect(() => {
-    request()
-  }, [])
-
-  console.log(data);
-  
+    request();
+  }, []);
 
   return (
     <div>
-      <h1>Custom Fetch Example</h1>
+      <h1>Custom Fetch Hook Example</h1>
+      <button onClick={request}>refetch</button>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       {data && data.length && (
@@ -37,4 +34,6 @@ const ListComponent: React.FC = () => {
   );
 };
 
-export default ListComponent;
+export { List };
+
+export default List;

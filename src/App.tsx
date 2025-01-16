@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import './App.css'
-import DataTable from './components/DataTable';
-import ListComponent from './components/ListComponent';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import "./App.css";
+import { DataTable } from "./components/DataTable";
+import { List } from "./components/List";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         </nav>
 
         <Routes>
-          <Route path="/simple-list" element={<ListComponent />} />
+          <Route path="/simple-list" element={<List />} />
           <Route path="/data-list" element={<DataTable />} />
         </Routes>
       </div>

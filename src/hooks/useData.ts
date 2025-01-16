@@ -1,17 +1,14 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-interface FetchOptions {
-  page: number;
-  limit: number;
-  filter?: string;
-  sort?: string;
-}
-
-const useDataFetch = (url: string, options: FetchOptions) => {
+const useData = (url: string) => {
   const [data, setData] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(10);
+  const [filter, setFilter] = useState<string>("");
+  const [sort, setSort] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,26 +16,61 @@ const useDataFetch = (url: string, options: FetchOptions) => {
       try {
         const response = await axios.get(url, {
           params: {
-            _page: options.page,
-            _limit: options.limit,
-            ...(options.sort ? { _sort: options.sort } : {}),
-            ...(options.filter ? { title_like: options.filter } : {}),
+            _page: page,
+            _limit: limit,
+            ...(sort ? { _sort: sort } : {}),
+            ...(filter ? { title_like: filter } : {}),
           },
         });
-        const totalResponse = response.headers['x-total-count'];
+        const totalResponse = response.headers["x-total-count"];
         setData(response.data);
         setTotal(Number(totalResponse));
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [url, options.page, options.limit, options.filter, options.sort]);
+  }, [url, page, limit, filter, sort]);
 
-  return { data, total, loading };
+  const handleNext = () => {
+    if (page * limit < total) {
+      setPage(page + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter(event.target.value);
+    setPage(1);
+  };
+
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSort(event.target.value);
+  };
+
+  return {
+    data,
+    total,
+    loading,
+    page,
+    limit,
+    filter,
+    sort,
+    handleNext,
+    handlePrev,
+    handleFilterChange,
+    handleSortChange,
+  };
 };
 
-export default useDataFetch;
+export { useData };
+
+export default useData;

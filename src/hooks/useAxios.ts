@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useState } from "react";
-
+ 
 const useAxios = <T>(config: AxiosRequestConfig): {
   data: T | undefined;
   isLoading: boolean;
