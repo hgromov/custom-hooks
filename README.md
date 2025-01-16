@@ -24,26 +24,20 @@ A specialized hook for paginated data fetching:
   - `handleNext`, `handlePrev`: Control pagination.
   - `handleFilterChange`, `handleSortChange`: Manage filter and sort changes.
 
-Dropdown Component
+### `Dropdown Component`
 The Dropdown component in React provides a simple and reusable way to create a dropdown menu with keyboard navigation, accessibility, and custom styling.
 
-Features
-State Management:
+- **Keyboard Navigation:**
+  - Supports ArrowDown, ArrowUp, Enter, and Escape for easy interaction.
 
-isExpanded: Tracks whether the dropdown menu is open or closed.
-selectedOption: Stores the currently selected option’s title.
-Keyboard Navigation:
+- **Accessibility:**
+  - Uses ARIA roles (role="combobox", aria-haspopup="listbox", aria-expanded) for better screen reader compatibility.
 
-Supports ArrowDown, ArrowUp, Enter, and Escape for easy interaction.
-Accessibility:
+- **Custom Rendering:**
+  - The renderCustomOption prop allows customizing the appearance of each dropdown item.
 
-Uses ARIA roles (role="combobox", aria-haspopup="listbox", aria-expanded) for better screen reader compatibility.
-Custom Rendering:
-
-The renderCustomOption prop allows customizing the appearance of each dropdown item.
-Custom Styling:
-
-Apply your own CSS using the styles prop to match the component's look and feel.
+- **Custom Styling:**
+  - Apply your own CSS using the styles prop to match the component's look and feel.
 
 
 ## Installation
